@@ -15,13 +15,16 @@ function App() {
   );
 
   const handleNewItem = (newTodo, newDate) => {
-    const newId = todoList.length ? todoList[todoList.length - 1].id + 1 : 0;
-    setTodoList([...todoList, { id: newId, name: newTodo, date: newDate }]);
-  };
+    setTodoList((current /*By default the latest todoList*/) => {
+      const newId = current.length
+        ? current[current.length - 1].id + 1
+        : 0;
+      return [...current, { id: newId, name: newTodo, date: newDate }];
+    });
+  }; // Using functional updates to avoid stale/old values during asynchronous uptades.
 
   const handleDeleteItem = (id) => {
-    const newList = todoList.filter((item) => item.id !== id);
-    setTodoList(newList);
+    setTodoList((current) => current.filter((item) => item.id !== id));
   };
 
   return (
