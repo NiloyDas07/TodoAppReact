@@ -15,7 +15,7 @@ function App() {
   );
 
   const handleNewItem = (newTodo, newDate) => {
-    setTodoList((current /*By default the latest todoList*/) => {
+    setTodoList((current /*By default the latest todoList.*/) => {
       const newId = current.length ? current[current.length - 1].id + 1 : 0;
       return [...current, { id: newId, name: newTodo, date: newDate }];
     });
