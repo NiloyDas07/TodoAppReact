@@ -4,11 +4,10 @@ import { TodoItemsContext } from "../store/todo-items-store";
 import styles from "./TodoItem.module.css";
 
 function TodoItem({ id, todo, date }) {
-  const todoContextObj = useContext(TodoItemsContext);
-  const onDelete = todoContextObj.deleteItem;
+  const {deleteItem} = useContext(TodoItemsContext);
 
   const handleDeleteClicked = () => {
-    onDelete(id);
+    deleteItem(id);
   };
 
   return (

@@ -7,8 +7,7 @@ import { TodoItemsContext } from "../store/todo-items-store";
 import styles from "./TodoItemsContainer.module.css";
 
 function TodoItemsContainer() {
-  const todoContextObj = useContext(TodoItemsContext);
-  const todoList = todoContextObj.todoList;
+  const { todoList } = useContext(TodoItemsContext); //Object Destructuring for useContext(TodoItemsContext).todoList.
   return (
     <div className={`${styles["item-container"]} container`}>
       <AddTodo></AddTodo>

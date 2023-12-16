@@ -4,9 +4,7 @@ import { TodoItemsContext } from "../store/todo-items-store";
 import styles from "./AddTodo.module.css";
 
 function AddTodo() {
-  const todoContextObj = useContext(TodoItemsContext);
-
-  const onNewItem = todoContextObj.addNewItem;
+  const { addNewItem } = useContext(TodoItemsContext);
 
   const textRef = useRef();
   const dateRef = useRef();
@@ -23,7 +21,7 @@ function AddTodo() {
     const text = textRef.current.value;
     const date = formatDate(dateRef.current.value);
 
-    onNewItem(text, date);
+    addNewItem(text, date);
 
     textRef.current.value = dateRef.current.value = "";
   };

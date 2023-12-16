@@ -2,4 +2,8 @@ import { createContext } from "react";
 
 const todoArray = JSON.parse(localStorage.getItem("todoArray")) || [];
 
-export const TodoItemsContext = createContext();
+export const TodoItemsContext = createContext({
+  todoList: [],
+  addNewItem: () => {},
+  deleteItem: () => {},
+});
