@@ -1,4 +1,4 @@
-const WelcomeMsg = ({ listLength }) => {
+const WelcomeMsg = () => {
   return <h3>All Tasks Done! Enjoy Your Day. 😊</h3>;
 };
 
