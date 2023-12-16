@@ -1,17 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./AddTodo.module.css";
 
 function AddTodo({ onNewItem }) {
-  const [text, setText] = useState("");
-  const [date, setDate] = useState("");
-
-  const handleOnKeyUpInput = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleOnChangeDate = (e) => {
-    setDate(e.target.value);
-  };
+  const textRef = useRef();
+  const dateRef = useRef();
 
   const handleAddButtonClicked = (e) => {
     e.preventDefault();
@@ -21,9 +13,13 @@ function AddTodo({ onNewItem }) {
       dateArray.reverse();
       return dateArray.join("/");
     }
-    onNewItem(text, formatDate(date));
-    setText("");
-    setDate("");
+
+    const text = textRef.current.value;
+    const date = formatDate(dateRef.current.value);
+
+    onNewItem(text, date);
+
+    textRef.current.value = dateRef.current.value = '';
   };
 
   return (
@@ -34,18 +30,16 @@ function AddTodo({ onNewItem }) {
       <div className="col-6">
         <input
           type="text"
+          ref={textRef}
           placeholder="Enter Todo Here"
           className="newTodo"
-          onChange={handleOnKeyUpInput}
-          value={text}
         />
       </div>
       <div className="col-4">
         <input
           type="date"
+          ref={dateRef}
           className="newTodoDate"
-          onChange={handleOnChangeDate}
-          value={date}
         />
       </div>
       <div className="col-2">
